@@ -1,449 +1,356 @@
 <!DOCTYPE html>
-<html lang="de" data-theme="dark">
+<html lang="de" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zakariae Idrissi — Portfolio</title>
-    <meta name="description" content="Portfolio für Ausbildung in Elektronik und Automatisierungstechnik">
+    <title>Zakariae Idrissi | Elektroniker für Automatisierungstechnik</title>
+    <meta name="description" content="Portfolio von Zakariae Idrissi - Bewerbung für eine Ausbildung als Elektroniker für Automatisierungstechnik in Deutschland.">
     
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
     <style>
         /* ========================================================
-           🎨 CSS VARIABLES & THEME SYSTEM
+           🎨 MODERN CLEAN THEME (CORPORATE UI)
            ======================================================== */
         :root {
-            /* Light Theme Default */
-            --bg-base: #F8FAFC;
-            --bg-card: #FFFFFF;
-            --bg-nav: rgba(255, 255, 255, 0.85);
+            /* Light Mode - Professional & Clean */
+            --bg-body: #F8FAFC;
+            --bg-surface: #FFFFFF;
+            --bg-nav: rgba(255, 255, 255, 0.9);
             --text-main: #0F172A;
-            --text-muted: #475569;
-            --primary: #2563EB; /* Professional Blue */
-            --primary-glow: rgba(37, 99, 235, 0.3);
-            --accent: #10B981; /* Emerald Green */
-            --border-color: #E2E8F0;
-            --terminal-bg: #1E293B;
-            --terminal-text: #E2E8F0;
-            --canvas-node: rgba(37, 99, 235, 0.6);
-            --canvas-line: rgba(37, 99, 235, 0.15);
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --text-muted: #64748B;
+            --primary: #0284C7; /* Deep Trust Blue */
+            --primary-hover: #0369A1;
+            --accent: #059669; /* Success Green */
+            --border: #E2E8F0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+            --shadow-lg: 0 10px 25px -3px rgba(0,0,0,0.05);
+            --gradient-1: #E0F2FE;
+            --gradient-2: #F0FDF4;
         }
 
         [data-theme="dark"] {
-            /* Dark Theme (Cyberpunk/Tech vibe) */
-            --bg-base: #050A0F;
-            --bg-card: #0D1B2A;
-            --bg-nav: rgba(5, 10, 15, 0.85);
-            --text-main: #E8F4F8;
-            --text-muted: #7A9BB5;
-            --primary: #00D4FF; /* Neon Cyan */
-            --primary-glow: rgba(0, 212, 255, 0.4);
-            --accent: #39FF14; /* Neon Green */
-            --border-color: rgba(0, 212, 255, 0.15);
-            --terminal-bg: #0A1520;
-            --terminal-text: #00D4FF;
-            --canvas-node: rgba(0, 212, 255, 0.8);
-            --canvas-line: rgba(0, 212, 255, 0.15);
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            /* Dark Mode - Elegant Deep Blue */
+            --bg-body: #0B1120;
+            --bg-surface: #1E293B;
+            --bg-nav: rgba(11, 17, 32, 0.9);
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --primary: #38BDF8; /* Light Blue for contrast */
+            --primary-hover: #7DD3FC;
+            --accent: #34D399;
+            --border: #334155;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.3);
+            --shadow-lg: 0 10px 25px -3px rgba(0,0,0,0.4);
+            --gradient-1: #0F172A;
+            --gradient-2: #1e1b4b;
         }
 
-        /* Basic Resets */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-base);
+            background-color: var(--bg-body);
             color: var(--text-main);
+            line-height: 1.7;
             transition: background-color 0.4s ease, color 0.4s ease;
             overflow-x: hidden;
-            line-height: 1.6;
+            position: relative;
         }
 
-        /* Typography */
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
-        h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1rem; }
-        .text-primary { color: var(--primary); }
-        .text-accent { color: var(--accent); }
-        .text-muted { color: var(--text-muted); }
-
-        /* Utilities */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        section { padding: 100px 0; position: relative; z-index: 2; }
-        .btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 12px 24px; border-radius: 6px; font-weight: 600;
-            text-decoration: none; transition: all 0.3s ease;
-            cursor: pointer; border: 2px solid transparent;
-        }
-        .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 4px 15px var(--primary-glow); }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 6px 20px var(--primary-glow); }
-        .btn-outline { background: transparent; border-color: var(--primary); color: var(--primary); }
-        .btn-outline:hover { background: var(--primary); color: #fff; }
-
-        /* Canvas Background */
-        #bg-canvas {
+        /* Ambient Background Mesh */
+        .bg-mesh {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 1; pointer-events: none; transition: opacity 0.5s ease;
+            z-index: -1; pointer-events: none;
+            background: radial-gradient(circle at 15% 50%, var(--gradient-1) 0%, transparent 50%),
+                        radial-gradient(circle at 85% 30%, var(--gradient-2) 0%, transparent 50%);
+            filter: blur(80px); opacity: 0.7;
+            transition: all 1s ease;
+            animation: breathe 10s infinite alternate ease-in-out;
         }
+        @keyframes breathe {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        /* Typography & Utils */
+        h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1rem; color: var(--text-main); }
+        .text-primary { color: var(--primary); }
+        .text-muted { color: var(--text-muted); }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 100px 0; }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 1rem;
+            text-decoration: none; transition: all 0.2s ease; cursor: pointer;
+        }
+        .btn-primary { background: var(--primary); color: #FFFFFF; border: 2px solid var(--primary); box-shadow: var(--shadow-md); }
+        .btn-primary:hover { background: var(--primary-hover); border-color: var(--primary-hover); transform: translateY(-2px); box-shadow: var(--shadow-lg); color:#FFF;}
+        .btn-outline { background: transparent; color: var(--text-main); border: 2px solid var(--border); }
+        .btn-outline:hover { border-color: var(--primary); color: var(--primary); background: var(--bg-surface); }
 
         /* Navigation */
         nav {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: var(--bg-nav); backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            padding: 1rem 0; transition: all 0.3s ease;
+            background: var(--bg-nav); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border); transition: all 0.3s ease;
         }
-        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-weight: 800; font-size: 1.2rem; text-decoration: none; color: var(--text-main); }
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: color 0.3s; }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .logo { font-size: 1.25rem; font-weight: 800; text-decoration: none; color: var(--text-main); letter-spacing: -0.5px;}
+        .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
         .nav-links a:hover { color: var(--primary); }
         
-        /* Theme Toggle */
-        .theme-toggle {
-            background: none; border: none; color: var(--text-main);
-            font-size: 1.2rem; cursor: pointer; transition: transform 0.3s;
+        .theme-btn {
+            background: var(--bg-surface); border: 1px solid var(--border); color: var(--text-muted);
+            width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; transition: all 0.2s;
         }
-        .theme-toggle:hover { transform: scale(1.1) rotate(15deg); color: var(--primary); }
+        .theme-btn:hover { color: var(--primary); border-color: var(--primary); transform: scale(1.05); }
 
-        /* Scroll Animations */
-        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        /* Fade Animations */
+        .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
 
         /* ========================================================
            SECTIONS
            ======================================================== */
-        /* Hero */
-        #hero { min-height: 100vh; display: flex; align-items: center; }
-        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
-        .hero-subtitle { font-size: 1.1rem; margin-bottom: 0.5rem; display: block; }
-        .hero-title { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; }
-        .hero-roles { height: 30px; font-size: 1.2rem; color: var(--primary); margin-bottom: 1.5rem; }
-        .cursor { animation: blink 1s infinite; }
-        @keyframes blink { 50% { opacity: 0; } }
-
-        /* About Terminal */
-        .terminal {
-            background: var(--terminal-bg); border-radius: 8px; overflow: hidden;
-            box-shadow: var(--shadow); border: 1px solid var(--border-color);
+        /* Hero Section */
+        #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 70px; }
+        .hero-content { max-width: 800px; }
+        .badge {
+            display: inline-block; padding: 6px 14px; border-radius: 50px;
+            background: var(--bg-surface); border: 1px solid var(--border);
+            color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
         }
-        .term-header { background: rgba(0,0,0,0.2); padding: 10px; display: flex; gap: 8px; }
-        .term-dot { width: 12px; height: 12px; border-radius: 50%; }
-        .term-dot:nth-child(1){background: #FF5F56;} .term-dot:nth-child(2){background: #FFBD2E;} .term-dot:nth-child(3){background: #27C93F;}
-        .term-body { padding: 20px; color: var(--terminal-text); font-size: 0.9rem; white-space: pre-wrap; line-height: 1.8;}
-
-        /* Skills 3D Cards */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-        .skill-card {
-            background: var(--bg-card); border: 1px solid var(--border-color);
-            padding: 2rem; border-radius: 12px; box-shadow: var(--shadow);
-            transform-style: preserve-3d; transform: perspective(1000px);
-            transition: border-color 0.3s;
-        }
-        .skill-card:hover { border-color: var(--primary); }
-        .skill-icon { font-size: 2.5rem; margin-bottom: 1rem; color: var(--primary); transform: translateZ(30px); }
-        .skill-card h3 { transform: translateZ(20px); }
-        .skill-card ul { list-style: none; transform: translateZ(10px); }
-        .skill-card li { margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
-        .skill-card li i { color: var(--accent); font-size: 0.8rem; }
-
-        /* Project Banner */
-        .project-banner {
-            background: var(--bg-card); border: 1px solid var(--border-color);
-            border-radius: 12px; padding: 3rem; box-shadow: var(--shadow);
-            position: relative; overflow: hidden;
-        }
-        .project-banner::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
-            background: var(--primary);
-        }
-        .tag { background: rgba(37, 99, 235, 0.1); color: var(--primary); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; display: inline-block; margin-bottom: 1rem; border: 1px solid var(--border-color);}
+        .hero-title { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.15; margin-bottom: 1.5rem; }
+        .hero-desc { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 600px; line-height: 1.8; }
         
-        .code-snippet {
-            background: var(--terminal-bg); color: #fff; padding: 1.5rem;
-            border-radius: 8px; font-size: 0.85rem; margin-top: 1.5rem;
-            border: 1px solid var(--border-color); overflow-x: auto;
-        }
+        /* Stats / Highlights */
+        .highlights { display: flex; gap: 2rem; margin-top: 3rem; flex-wrap: wrap; }
+        .highlight-item { display: flex; align-items: center; gap: 10px; color: var(--text-main); font-weight: 500; }
+        .highlight-item i { color: var(--accent); background: rgba(52, 211, 153, 0.1); padding: 8px; border-radius: 8px; }
 
-        /* Language Badges */
-        .lang-flex { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
-        .lang-badge {
-            background: var(--bg-card); border: 1px solid var(--border-color);
-            padding: 10px 20px; border-radius: 8px; font-weight: 600;
-            display: flex; align-items: center; gap: 10px; box-shadow: var(--shadow);
+        /* Card System (For About & Project) */
+        .info-card {
+            background: var(--bg-surface); border: 1px solid var(--border);
+            border-radius: 16px; padding: 2.5rem; box-shadow: var(--shadow-md);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
+        .info-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+
+        /* Skills Grid */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .skill-group { background: var(--bg-surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+        .skill-group h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem;}
+        .skill-group h3 i { color: var(--primary); }
+        .skill-list { list-style: none; }
+        .skill-list li { margin-bottom: 0.8rem; display: flex; align-items: center; gap: 10px; color: var(--text-muted); }
+        .skill-list li i { color: var(--accent); font-size: 0.8rem; }
+
+        /* Project Section Specifics */
+        .project-tag { background: rgba(2, 132, 199, 0.1); color: var(--primary); padding: 4px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;}
+        .tech-stack { display: flex; gap: 10px; margin-top: 1.5rem; flex-wrap: wrap;}
+        .tech-pill { background: var(--bg-body); border: 1px solid var(--border); padding: 4px 12px; border-radius: 50px; font-size: 0.85rem; color: var(--text-muted); font-weight: 500;}
+        .project-notes { background: var(--bg-body); border-left: 4px solid var(--primary); padding: 1.5rem; border-radius: 0 8px 8px 0; margin-top: 2rem;}
+
+        /* Footer */
+        footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 5rem;}
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero-grid { grid-template-columns: 1fr; text-align: center; }
-            .nav-links { display: none; /* Simplification for demo */ }
+            .nav-links { display: none; } /* Mobile menu toggle can be added later */
             .hero-title { font-size: 2.5rem; }
-            .project-banner { padding: 1.5rem; }
+            .highlights { flex-direction: column; gap: 1rem; }
+            section { padding: 60px 0; }
+            .info-card { padding: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <canvas id="bg-canvas"></canvas>
+    <div class="bg-mesh"></div>
 
     <nav>
         <div class="container nav-inner">
-            <a href="#" class="logo font-mono">Z.IDRISSI<span class="text-primary">_</span></a>
-            <div class="nav-links font-mono">
-                <a href="#about">Über mich</a>
-                <a href="#skills">Fähigkeiten</a>
-                <a href="#project">Projekt</a>
-                <button class="theme-toggle" id="theme-btn" title="Toggle Theme">
-                    <i class="fa-solid fa-moon"></i>
+            <a href="#" class="logo">Zakariae<span class="text-primary">.</span></a>
+            <div class="nav-links">
+                <a href="#profil">Profil</a>
+                <a href="#kompetenzen">Kompetenzen</a>
+                <a href="#projekt">Abschlussprojekt</a>
+                <button class="theme-btn" id="theme-toggle" aria-label="Dark/Light Mode umschalten">
+                    <i class="fa-solid fa-moon" id="theme-icon"></i>
                 </button>
             </div>
         </div>
     </nav>
 
     <section id="hero">
-        <div class="container hero-grid">
-            <div class="hero-text fade-up">
-                <span class="hero-subtitle font-mono text-muted">// Initialisierung...</span>
-                <h1 class="hero-title">Hallo, ich bin <br><span class="text-primary">Zakariae Idrissi</span></h1>
-                <div class="hero-roles font-mono" id="typing-text"></div>
-                <p class="text-muted" style="max-width: 500px; margin-bottom: 2rem;">
-                    Student der Elektronik (Licence Électronique) an der FSDM in Fès, Marokko. 
-                    Ich suche eine Ausbildung als Elektroniker für Automatisierungstechnik oder Fachinformatiker in Deutschland.
+        <div class="container">
+            <div class="hero-content fade-up">
+                <div class="badge">Bewerber für 2025 / 2026</div>
+                <h1 class="hero-title">Zukünftiger <span class="text-primary">Elektroniker für Automatisierungstechnik</span></h1>
+                <p class="hero-desc">
+                    Ich bin Zakariae Idrissi, Student der Elektronik an der Universität FSDM (Fès, Marokko). 
+                    Mit einer starken Basis in Hardwaredesign und Programmierung suche ich eine praxisorientierte Ausbildung in Deutschland.
                 </p>
                 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <a href="#project" class="btn btn-primary"><i class="fa-solid fa-microchip"></i> Mein Projekt</a>
-                    <a href="mailto:contact@example.com" class="btn btn-outline"><i class="fa-solid fa-envelope"></i> Kontakt</a>
+                    <a href="#projekt" class="btn btn-primary">Mein Projekt ansehen</a>
+                    <a href="#kontakt" class="btn btn-outline"><i class="fa-regular fa-envelope"></i> Kontakt aufnehmen</a>
                 </div>
-            </div>
-            <div class="hero-visual fade-up" style="transition-delay: 0.2s;">
-                <div class="terminal">
-                    <div class="term-header">
-                        <div class="term-dot"></div><div class="term-dot"></div><div class="term-dot"></div>
-                    </div>
-                    <div class="term-body font-mono">
-<span style="color:#F97316">const</span> student = {
-  name: <span style="color:#10B981">"Zakariae Idrissi"</span>,
-  location: <span style="color:#10B981">"Fès, Marokko"</span>,
-  education: <span style="color:#10B981">"Licence Électronique (FSDM)"</span>,
-  target: <span style="color:#10B981">"Ausbildung in DE (2025/2026)"</span>,
-  status: <span style="color:#3B82F6">"Bereit zur Relocation"</span>
-};
-
-<span style="color:#64748B">// Checking language skills...</span>
-> Deutsch: ÖSD B2 (In Vorbereitung)
-> Französisch: C1 (Fließend)
-> Englisch: B2
-                    </div>
+                
+                <div class="highlights fade-up" style="transition-delay: 0.2s;">
+                    <div class="highlight-item"><i class="fa-solid fa-graduation-cap"></i> Licence Électronique (6. Semester)</div>
+                    <div class="highlight-item"><i class="fa-solid fa-language"></i> ÖSD B2 Deutsch (In Vorbereitung)</div>
+                    <div class="highlight-item"><i class="fa-solid fa-plane-departure"></i> Bereit für Umzug nach Deutschland</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="skills" style="background: rgba(0,0,0,0.02);">
+    <section id="profil">
         <div class="container">
-            <h2 class="fade-up">Technisches <span class="text-primary">Arsenal</span></h2>
-            <div class="skills-grid">
-                <div class="skill-card fade-up">
-                    <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
-                    <h3 class="font-mono">Programmierung</h3>
-                    <ul>
-                        <li><i class="fa-solid fa-check"></i> C / C++</li>
-                        <li><i class="fa-solid fa-check"></i> Arduino (C++)</li>
-                        <li><i class="fa-solid fa-check"></i> MATLAB</li>
-                    </ul>
-                </div>
-                <div class="skill-card fade-up" style="transition-delay: 0.1s;">
-                    <div class="skill-icon"><i class="fa-solid fa-microchip"></i></div>
-                    <h3 class="font-mono">Hardware & Simulation</h3>
-                    <ul>
-                        <li><i class="fa-solid fa-check"></i> Proteus ISIS</li>
-                        <li><i class="fa-solid fa-check"></i> I2C / PWM / UART</li>
-                        <li><i class="fa-solid fa-check"></i> LDR Sensoren & Servomotoren</li>
-                    </ul>
-                </div>
-                <div class="skill-card fade-up" style="transition-delay: 0.2s;">
-                    <div class="skill-icon"><i class="fa-brands fa-linux"></i></div>
-                    <h3 class="font-mono">Systeme & Tools</h3>
-                    <ul>
-                        <li><i class="fa-solid fa-check"></i> Linux Mint OS</li>
-                        <li><i class="fa-solid fa-check"></i> Git & GitHub</li>
-                        <li><i class="fa-solid fa-check"></i> LaTeX für Dokumentation</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="project">
-        <div class="container">
-            <h2 class="fade-up">Flaggschiff-<span class="text-primary">Projekt</span></h2>
-            <div class="project-banner fade-up">
-                <span class="tag font-mono">PFE (Abschlussprojekt)</span>
-                <h3>Einachsiger Solartracker <br><span style="font-size: 1.2rem; color: var(--text-muted); font-weight: 400;">(Système de Suivi Solaire à Axe Unique)</span></h3>
-                <p style="margin-top: 1rem; max-width: 800px;">
-                    Entwicklung und Simulation eines intelligenten Systems zur Nachführung von Solarmodulen mithilfe von Arduino. Das System nutzt LDR-Sensoren zur Lichtmessung und einen Servomotor zur präzisen Ausrichtung.
+            <h2 class="fade-up">Mein <span class="text-primary">Profil</span></h2>
+            <div class="info-card fade-up">
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 1.1rem;">
+                    Mein Interesse an eingebetteten Systemen (Embedded Systems) begann mit dem Wunsch zu verstehen, wie Code physische Bewegungen steuert. 
+                    Während meines Studiums in Marokko habe ich gelernt, komplexe theoretische Konzepte in funktionierende elektronische Prototypen umzusetzen.
                 </p>
-                <div style="margin-top: 1.5rem; background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent); padding: 1rem; border-radius: 4px; font-size: 0.9rem;">
-                    <strong><i class="fa-solid fa-lightbulb" style="color: var(--accent);"></i> Technische Besonderheiten des Prototyps:</strong>
-                    <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
-                        <li><strong>Logik:</strong> Der Code enthält eine spezifische Bedingung, die sicherstellt, dass der Motor bei Sonnenuntergang automatisch in die <strong>Ost-Position</strong> zurückkehrt, um für den nächsten Tag bereit zu sein.</li>
-                        <li><strong>Mechanik:</strong> Das im Prototyp verwendete Solarmodul dient ausschließlich als <strong>mechanische Gewichtssimulation</strong> zur Belastungstests des Servomotors und nicht zur elektrischen Leistungsmessung.</li>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">
+                    Das duale Ausbildungssystem in Deutschland fasziniert mich besonders, da es Präzision, praktische Erfahrung und hohe Qualitätsstandards vereint. 
+                    Ich lerne derzeit intensiv Deutsch (Zielniveau B2) und bereite mich gezielt auf die Integration in den deutschen Arbeitsmarkt vor.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="kompetenzen">
+        <div class="container">
+            <h2 class="fade-up">Technische <span class="text-primary">Kompetenzen</span></h2>
+            <div class="skills-grid">
+                <div class="skill-group fade-up">
+                    <h3><i class="fa-solid fa-microchip"></i> Hardware & Elektronik</h3>
+                    <ul class="skill-list">
+                        <li><i class="fa-solid fa-check"></i> Schaltungsdesign & Analyse</li>
+                        <li><i class="fa-solid fa-check"></i> Proteus ISIS (Simulation)</li>
+                        <li><i class="fa-solid fa-check"></i> Sensorik (LDR, Temperatur)</li>
+                        <li><i class="fa-solid fa-check"></i> Servomotoren & Steuerung</li>
                     </ul>
                 </div>
-
-                <div class="code-snippet font-mono">
-<span style="color:#64748B">// C++ / Arduino Motor Logic Excerpt</span>
-<span style="color:#3B82F6">void</span> <span style="color:#EAB308">checkSunsetAndReset</span>() {
-  <span style="color:#F97316">if</span> (ldrValue_East &lt; THRESHOLD && ldrValue_West &lt; THRESHOLD) {
-    <span style="color:#64748B">// Sonnenuntergang erkannt: Rückkehr zur Ost-Position</span>
-    myServo.<span style="color:#EAB308">write</span>(POS_EAST);
-    delay(1000); 
-  }
-}
+                <div class="skill-group fade-up" style="transition-delay: 0.1s;">
+                    <h3><i class="fa-solid fa-code"></i> Programmierung</h3>
+                    <ul class="skill-list">
+                        <li><i class="fa-solid fa-check"></i> C / C++</li>
+                        <li><i class="fa-solid fa-check"></i> Arduino Programmierung</li>
+                        <li><i class="fa-solid fa-check"></i> MATLAB & Simulink</li>
+                        <li><i class="fa-solid fa-check"></i> I2C / PWM / UART Protokolle</li>
+                    </ul>
+                </div>
+                <div class="skill-group fade-up" style="transition-delay: 0.2s;">
+                    <h3><i class="fa-solid fa-laptop-code"></i> IT & Werkzeuge</h3>
+                    <ul class="skill-list">
+                        <li><i class="fa-solid fa-check"></i> Betriebssystem: Linux Mint</li>
+                        <li><i class="fa-solid fa-check"></i> Versionskontrolle: Git / GitHub</li>
+                        <li><i class="fa-solid fa-check"></i> Technische Dokumentation (LaTeX)</li>
+                        <li><i class="fa-solid fa-check"></i> Problemlösung & Debugging</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer style="text-align: center; padding: 2rem; border-top: 1px solid var(--border-color); font-size: 0.9rem; color: var(--text-muted);">
-        &copy; 2026 Zakariae Idrissi. Entwickelt für die Bewerbung in Deutschland.
+    <section id="projekt">
+        <div class="container">
+            <h2 class="fade-up">Abschluss<span class="text-primary">projekt</span></h2>
+            <div class="info-card fade-up">
+                <span class="project-tag">PFE 2025/2026</span>
+                <h3 style="font-size: 1.8rem; margin-top: 1rem;">Einachsiger Solartracker (Système de Suivi Solaire)</h3>
+                
+                <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: 1rem;">
+                    Für mein Abschlussprojekt entwickle, programmiere und simuliere ich ein eingebettetes System zur Optimierung der Solarenergiegewinnung. 
+                    Das System nutzt Arduino, LDR-Sensoren zur Lichtmessung und einen Servomotor zur kontinuierlichen Ausrichtung nach der Sonne.
+                </p>
+
+                <div class="project-notes">
+                    <h4 style="margin-bottom: 0.5rem; color: var(--text-main);"><i class="fa-solid fa-gears text-primary"></i> Technische Besonderheiten der Umsetzung:</h4>
+                    <ul style="color: var(--text-muted); margin-left: 1.5rem; list-style-type: disc;">
+                        <li style="margin-bottom: 0.5rem;"><strong>Intelligente Motorlogik:</strong> Ich habe den C++ Code so optimiert, dass der Tracker bei Sonnenuntergang (wenn die Lichtwerte unter einen bestimmten Schwellenwert fallen) automatisch in die <strong>Ost-Position</strong> zurückkehrt, um am nächsten Morgen startklar zu sein.</li>
+                        <li><strong>Mechanische Validierung:</strong> Das im Prototyp verwendete Solarmodul dient als <strong>mechanische Gewichtssimulation</strong>. Es testet die Belastbarkeit und Stabilität des Servomotors unter realen Gewichtsbedingungen, unabhängig von der elektrischen Messung.</li>
+                    </ul>
+                </div>
+
+                <div class="tech-stack">
+                    <span class="tech-pill">Arduino Uno</span>
+                    <span class="tech-pill">C++</span>
+                    <span class="tech-pill">Proteus</span>
+                    <span class="tech-pill">Sensortechnik</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="kontakt">
+        <div class="container">
+            <p style="font-size: 1.2rem; font-weight: 600; color: var(--text-main); margin-bottom: 1rem;">Kontaktieren Sie mich</p>
+            <p>E-Mail: <a href="mailto:email@example.com" class="text-primary" style="text-decoration:none;">email@example.com</a></p>
+            <p style="margin-top: 2rem;">&copy; 2026 Zakariae Idrissi. Erstellt für Bewerbungen in Deutschland.</p>
+        </div>
     </footer>
 
     <script>
         // 1. Theme Toggle Logic
-        const themeBtn = document.getElementById('theme-btn');
+        const themeBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
         const html = document.documentElement;
-        
+
+        // Check Local Storage
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        updateIcon(savedTheme);
+
         themeBtn.addEventListener('click', () => {
             const currentTheme = html.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             html.setAttribute('data-theme', newTheme);
-            themeBtn.innerHTML = newTheme === 'dark' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
-            updateCanvasColors(); // Update canvas nodes
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
         });
 
-        // 2. Typing Effect (Hero)
-        const roles = ["Elektroniker für Autom.", "Embedded Systems Dev.", "Fachinformatiker"];
-        let roleIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typingEl = document.getElementById('typing-text');
-
-        function type() {
-            const currentRole = roles[roleIndex];
-            if (isDeleting) {
-                typingEl.innerHTML = currentRole.substring(0, charIndex - 1) + '<span class="cursor">|</span>';
-                charIndex--;
+        function updateIcon(theme) {
+            if (theme === 'dark') {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
             } else {
-                typingEl.innerHTML = currentRole.substring(0, charIndex + 1) + '<span class="cursor">|</span>';
-                charIndex++;
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
             }
-
-            let typeSpeed = isDeleting ? 50 : 100;
-            if (!isDeleting && charIndex === currentRole.length) {
-                typeSpeed = 2000; // Pause at end
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                roleIndex = (roleIndex + 1) % roles.length;
-                typeSpeed = 500; // Pause before new word
-            }
-            setTimeout(type, typeSpeed);
         }
-        setTimeout(type, 1000);
 
-        // 3. Scroll Fade-Up Observer
-        const observer = new IntersectionObserver((entries) => {
+        // 2. Scroll Fade-Up Animation
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Run once
                 }
             });
-        }, { threshold: 0.1 });
+        }, observerOptions);
 
-        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-        // 4. Vanilla 3D Tilt Effect for Skill Cards
-        document.querySelectorAll('.skill-card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left; 
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = ((y - centerY) / centerY) * -10; // Max 10 deg
-                const rotateY = ((x - centerX) / centerX) * 10;
-                
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-            });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-            });
+        document.querySelectorAll('.fade-up').forEach(el => {
+            observer.observe(el);
         });
-
-        // 5. Interactive Canvas Background
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        let width, height, particles;
-        let nodeColor, lineColor;
-
-        function updateCanvasColors() {
-            const style = getComputedStyle(document.body);
-            nodeColor = style.getPropertyValue('--canvas-node').trim();
-            lineColor = style.getPropertyValue('--canvas-line').trim();
-        }
-
-        function initCanvas() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-            particles = [];
-            for (let i = 0; i < 40; i++) {
-                particles.push({
-                    x: Math.random() * width,
-                    y: Math.random() * height,
-                    vx: (Math.random() - 0.5) * 1,
-                    vy: (Math.random() - 0.5) * 1,
-                    radius: Math.random() * 2 + 1
-                });
-            }
-            updateCanvasColors();
-        }
-
-        function animateCanvas() {
-            ctx.clearRect(0, 0, width, height);
-            
-            particles.forEach((p, index) => {
-                p.x += p.vx;
-                p.y += p.vy;
-                if (p.x < 0 || p.x > width) p.vx *= -1;
-                if (p.y < 0 || p.y > height) p.vy *= -1;
-
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = nodeColor;
-                ctx.fill();
-
-                for (let j = index + 1; j < particles.length; j++) {
-                    const p2 = particles[j];
-                    const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-                    if (dist < 150) {
-                        ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.strokeStyle = lineColor;
-                        ctx.lineWidth = 1;
-                        ctx.stroke();
-                    }
-                }
-            });
-            requestAnimationFrame(animateCanvas);
-        }
-
-        window.addEventListener('resize', initCanvas);
-        initCanvas();
-        animateCanvas();
     </script>
 </body>
 </html>
